@@ -1,4 +1,12 @@
 package com.agesadev.simpetestcases.model
 
-class UserBody {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class UserBody(
+    val name: String,
+    @PrimaryKey
+    val email: String
+) {
 }

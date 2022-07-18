@@ -1,18 +1,31 @@
 package com.agesadev.simpetestcases.ui
 
-import org.junit.jupiter.api.Assertions.*
+import com.agesadev.simpetestcases.ui.UserInputValidator.validateName
+import junit.framework.TestCase.assertEquals
+import org.junit.Test
+
 
 internal class UserInputValidatorTest {
 
-    @org.junit.jupiter.api.Test
-    fun validateName() {
+    @Test
+    fun `show an error n empty name input`() {
+        val name = ""
+        assertEquals(false,validateName(name))
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    fun `show success for valid name`(){
+        val name="Agesa"
+
+    }
+
+    @Test
     fun validateEmail() {
+
     }
 
-    @org.junit.jupiter.api.Test
+
+    @Test
     fun validateBitmap() {
     }
 }
