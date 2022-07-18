@@ -1,5 +1,7 @@
 package com.agesadev.simpetestcases.ui
 
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import com.agesadev.simpetestcases.api.ApiService
 import com.agesadev.simpetestcases.local.AppDatabase
 import com.agesadev.simpetestcases.model.UserBody
@@ -17,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-internal class MainActivityRepoTest {
+class MainActivityRepoTest {
 
     private lateinit var appDatabase: AppDatabase
     private lateinit var apiService: ApiService
@@ -40,6 +42,12 @@ internal class MainActivityRepoTest {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+
+        appDatabase = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext()
+            ,AppDatabase::class.java).build()
+
+        mainActivityRepo = MainActivityRepo(apiService = apiService, localDb = appDatabase)
     }
 
     @After
@@ -81,23 +89,26 @@ internal class MainActivityRepoTest {
     }
 
 
-
 //    @Test
-//    fun responseStatusShouldBeSuccess()= runBlocking {
+//    fun responseStatusShouldBeSuccess() = runBlocking {
 //        mockWebServer.enqueue(
 //            MockResponse()
-//                .setBody(Mock(
-//                    "api_responses/success.json").content).setResponseCode(200))
+//                .setBody(
+//                    MockResponseFileReader(
+//                        "api_responses/success.json"
+//                    ).content
+//                ).setResponseCode(200)
+//        )
 //
-//        val userBody = UserBody("random name","random@mail.com")
-//        val serverMockRes =  mainActivityRepo.createNewUser(userBody)
+//        val userBody = UserBody("random name", "random@mail.com")
+//        val serverMockRes = mainActivityRepo.createNewUser(userBody)
 //
-//        assertTrue(serverMockRes.isSuccessful&&serverMockRes.body()?.status=="success")
+//        assertTrue(serverMockRes.isSuccessful && serverMockRes.body()?.status == "success")
 //
 //    }
 
     @After
-    fun shut(){
+    fun shut() {
         mockWebServer.shutdown()
     }
 }
