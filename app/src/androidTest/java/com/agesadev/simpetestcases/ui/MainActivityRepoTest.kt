@@ -95,7 +95,7 @@ class MainActivityRepoTest {
 //            MockResponse()
 //                .setBody(
 //                    MockResponseFileReader(
-//                        "api_responses/success.json"
+//                        "resources/api_responses/success.json"
 //                    ).content
 //                ).setResponseCode(200)
 //        )
