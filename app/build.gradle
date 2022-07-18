@@ -56,6 +56,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2'
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2'
 
 
 //    viewmodel-lifecycle
